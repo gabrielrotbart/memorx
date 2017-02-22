@@ -6,7 +6,7 @@ class NumOfLettersSelect extends React.Component {
     super(props);
 
     this.state = {
-      options: [...Array(8).keys()].map(num => num + 1)
+      options: [4,5,6,7,8,9]
     }
   }
 

@@ -7,7 +7,7 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      numberOfLetters: 5,
+      numOfLetters: 5,
       possibleLetters: ['S', 'T', 'U']
     }
 
@@ -31,8 +31,8 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <NumOfLettersSelect value={this.state.numberOfLetters} handleStateChange={this.createStateHandler('numberOfLetters')}/>
-        <Canvas numOfLetters={this.state.numberOfLetters} possibleLetters={this.state.possibleLetters}/>
+        <NumOfLettersSelect value={this.state.numOfLetters} handleStateChange={this.createStateHandler('numOfLetters')}/>
+        <Canvas numOfLetters={this.state.numOfLetters} possibleLetters={this.state.possibleLetters}/>
       </div>
     )
   }

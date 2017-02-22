@@ -5,8 +5,6 @@ class Canvas extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      numOfLetters: 6,
-      possibleLetters: ['S', 'T', 'U'],
       height: 400,
       width: 400
     }
@@ -16,16 +14,21 @@ class Canvas extends React.Component {
     const height = this.state.height
     const width = this.state.width
 
-    const x = this.randomBetween(0, width);
-    const y = this.randomBetween(0, height);
+    const x = this.randomBetween(0, (width - 12));
+    const y = this.randomBetween(0, (height - 12));
 
     return {x: x, y: y}
   }
 
+  randomisedNumOfLetters() {
+    return this.props.numOfLetters - this.randomBetween(0, 2)
+  }
+
   lettersToDisplay() {
     let letters = []
+    let numOfLetters = this.randomisedNumOfLetters();
 
-    for (let count = 0; count < this.props.numOfLetters; count++) {
+    for (let count = 0; count < numOfLetters; count++) {
       const choosenLetter = this.props.possibleLetters[this.randomBetween(0, this.props.possibleLetters.length)];
       const coordinates = this.randomisedCoordinate()
 
@@ -52,7 +55,6 @@ class Canvas extends React.Component {
                 position: 'absolute',
                 left: letter.x,
                 top: letter.y,
-                marginLeft: this.state.width
               }}>{letter.letter}</div>
           })
         }
