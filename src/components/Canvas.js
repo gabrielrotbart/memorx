@@ -6,7 +6,7 @@ class Canvas extends React.Component {
     super(props);
     this.state = {
       numOfLetters: 6,
-      possibleLetters: ['x', 'y', 'u'],
+      possibleLetters: ['S', 'T', 'U'],
       height: 400,
       width: 400
     }
@@ -16,8 +16,8 @@ class Canvas extends React.Component {
     const height = this.state.height
     const width = this.state.width
 
-    const x = Math.floor(Math.random() * width);
-    const y = Math.floor(Math.random() * height);
+    const x = this.randomBetween(0, width);
+    const y = this.randomBetween(0, height);
 
     return {x: x, y: y}
   }
@@ -25,14 +25,18 @@ class Canvas extends React.Component {
   lettersToDisplay() {
     let letters = []
 
-    for (let count = 0; count < this.state.numOfLetters; count++) {
-      const choosenLetter = this.state.possibleLetters[Math.floor(Math.random() * this.state.possibleLetters.length)];
+    for (let count = 0; count < this.props.numOfLetters; count++) {
+      const choosenLetter = this.props.possibleLetters[this.randomBetween(0, this.props.possibleLetters.length)];
       const coordinates = this.randomisedCoordinate()
 
       letters.push({letter: choosenLetter, x: coordinates.x, y: coordinates.y});
     }
 
     return letters
+  }
+
+  randomBetween(min, max) {
+    return Math.floor(Math.random() * (max - min) + min)
   }
 
   render() {
@@ -42,7 +46,14 @@ class Canvas extends React.Component {
       <div className='canvas'>
         {
           lettersToDisplay.map((letter, index) => {
-            return <div key={index} style={{position: 'absolute', left: letter.x, top: letter.y}}>{letter.letter}</div>
+            return <div
+              key={index}
+              style={{
+                position: 'absolute',
+                left: letter.x,
+                top: letter.y,
+                marginLeft: this.state.width
+              }}>{letter.letter}</div>
           })
         }
       </div>
