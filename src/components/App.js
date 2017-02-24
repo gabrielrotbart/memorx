@@ -1,5 +1,5 @@
 import React from 'react';
-import Canvas from './Canvas';
+import CanvasController from './CanvasController';
 import NumOfLettersSelect from './NumOfLettersSelect';
 
 class App extends React.Component {
@@ -32,7 +32,13 @@ class App extends React.Component {
     return (
       <div>
         <NumOfLettersSelect value={this.state.numOfLetters} handleStateChange={this.createStateHandler('numOfLetters')}/>
-        <Canvas numOfLetters={this.state.numOfLetters} possibleLetters={this.state.possibleLetters}/>
+        <CanvasController
+          numOfLetters={this.state.numOfLetters}
+          possibleLetters={this.state.possibleLetters}
+          handleStateChange={this.createStateHandler('displayedLetters')}
+          height='400'
+          width='400'
+        />
       </div>
     )
   }
