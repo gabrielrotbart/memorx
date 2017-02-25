@@ -52,9 +52,7 @@ class CanvasController extends React.Component {
 
   renderQuiz() {
     return (
-      <Canvas>
-        <Quiz displayedLetters={this.state.letters}/>
-      </Canvas>
+      <Quiz displayedLetters={this.state.letters} possibleLetters={this.props.possibleLetters}/>
     )
   }
 
