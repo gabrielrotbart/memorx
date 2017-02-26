@@ -1,6 +1,7 @@
 import React from 'react';
 import CanvasController from './CanvasController';
 import NumOfLettersSelect from './NumOfLettersSelect';
+import Button from './Button';
 
 class App extends React.Component {
   constructor(props) {
@@ -11,31 +12,29 @@ class App extends React.Component {
       possibleLetters: ['S', 'T', 'U']
     }
 
-    this.changeState = this.changeState.bind(this)
+    this.changeNumLetters = this.changeNumLetters.bind(this)
+    this.handleShowLettersClick = this.handleShowLettersClick.bind(this)
   }
 
-  createStateHandler(key) {
-
-    return (value) => {
-      this.changeState({ key: key, value: value })
-    }
-
+  changeNumLetters(value) {
+    this.setState({numOfLetters: Number.parseInt(value, 10) || ''})
   }
 
-  changeState(changes) {
-    const newState = Object.assign({}, this.state)
-    newState[changes.key] = changes.value
-    this.setState(newState)
+  handleShowLettersClick() {
+    this.canvasController.showLetters()
   }
 
   render() {
     return (
-      <div>
-        <NumOfLettersSelect value={this.state.numOfLetters} handleStateChange={this.createStateHandler('numOfLetters')}/>
+      <div className='app'>
+        <div className='controls'>
+          <NumOfLettersSelect value={this.state.numOfLetters} handleChange={this.changeNumLetters}/>
+          <Button extraClasses={['flash']} text='Flash' onClick={this.handleShowLettersClick}></Button>
+        </div>
         <CanvasController
           numOfLetters={this.state.numOfLetters}
           possibleLetters={this.state.possibleLetters}
-          handleStateChange={this.createStateHandler('displayedLetters')}
+          ref={(controller) => { this.canvasController = controller }}
           height='400'
           width='400'
         />

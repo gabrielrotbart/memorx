@@ -1,9 +1,81 @@
+body {
+  font-size: 10px;
+}
+
+.app {
+  margin-top: 2rem;
+  font-size: 1rem;
+}
+
+.controls {
+  font-family: 'Source Sans Pro', sans-serif;
+  display: flex;
+  justify-content: space-around;
+  margin: 1rem auto;
+  width: 400px;
+}
+
+.btn {
+  padding: 1rem;
+  border-radius: 6px;
+  border: 0;
+  text-transform: capitalize;
+  font-size: 1rem;
+  background-color: #1998ff;
+  color: #fff;
+  width: 7.5rem;
+}
+
+.btn:focus {
+  outline: 0;
+}
+
+.label {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.input {
+
+}
+
+.input-field {
+  font-size: 1rem;
+  text-align: center;
+  border: 1px solid black;
+  border-radius: 6px;
+  flex: 1;
+  width: 60%;
+  padding: 0.5rem 0.2rem;
+}
+
+.input:focus {
+  outline: 0;
+}
+
+.flash {
+  width: 25%;
+}
+
 .canvas {
   width: 400px;
   height: 400px;
   margin: auto;
   border: solid 1px black;
   position: relative;
+  font-family: initial;
+}
+
+.controls, .message, .quiz-canvas {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+.message {
+  margin: 1rem;
+}
+
+.message .footer {
+  font-size: smaller;
 }
 
 .quiz-canvas, .quiz-form {
@@ -14,11 +86,47 @@
 }
 
 .quiz-form {
-  width: 100%;
+  width: 35%;
   height: 50%;
   justify-content: space-between;
 }
 
+.quiz-form .input {
+  padding: 0.4rem;
+  border: 1px solid #8a8989;
+  border-radius: 3px;
+  width: 60%;
+  margin-left: 1rem;
+}
+
+.quiz-form .label {
+  font-size: 1.1rem;
+  width: 7.5rem;
+  display: flex;
+}
+
 .quizzed-letter {
   margin-right: 1rem;
+}
+
+.results {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.answer {
+  font-size: 1.3rem;
+  letter-spacing: 0.1rem;
+}
+
+.answer .letter {
+  margin-right: 1rem;
+}
+
+.results .percentage {
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  letter-spacing: 0.2rem;
 }

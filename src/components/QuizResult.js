@@ -33,8 +33,6 @@ class QuizResult extends React.Component {
       return 1 - (incorrect / letterCounts[letter])
     })
 
-    console.log(precentages)
-
     const total = precentages.reduce((sum, precentage) => {
       return sum + precentage
     })
@@ -46,19 +44,17 @@ class QuizResult extends React.Component {
     const results = this.results()
 
     return (
-      <div>
-        <div className='answers'>
-          {
-            results.map((result) => {
-              return (
-                <div className='answer' key={result.letter}>
-                  <span>{result.letter}</span><span>{result.answered} / {result.displayed}</span>
-                </div>
-              )
-            })
-          }
-        </div>
-        <div>{this.calculatePrecentage()}%</div>
+      <div className='results'>
+        {
+          results.map((result) => {
+            return (
+              <div className='answer' key={result.letter}>
+                <span className='letter'>{result.letter}</span><span>{result.answered} / {result.displayed}</span>
+              </div>
+            )
+          })
+        }
+        <div className='percentage'>{this.calculatePrecentage()}%</div>
       </div>
     )
   }

@@ -9,7 +9,7 @@ class Quiz extends React.Component {
     super(props);
 
     this.state = {
-      hasAnswered: false,
+      hasAnswered: true,
       answers: props.possibleLetters.reduce((answers, letter) => {
         answers[letter] = 0
         return answers
@@ -53,9 +53,9 @@ class Quiz extends React.Component {
         {
           this.props.possibleLetters.map((letter) => {
             return (
-              <label key={letter}>
+              <label className='label' key={letter}>
                 <span className='quizzed-letter'>{letter}</span>
-                <input value={this.state.answers[letter]} name={letter} type='number' onChange={this.updateAnswers} />
+                <input className='input' value={this.state.answers[letter]} name={letter} type='number' onChange={this.updateAnswers} />
               </label>
             )
           })

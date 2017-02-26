@@ -1,5 +1,4 @@
 import React from 'react';
-import Button from './Button';
 import Canvas from './Canvas';
 import LettersDisplay from './LettersDisplay';
 import randomBetween from '../helpers/random-between';
@@ -12,21 +11,22 @@ class CanvasController extends React.Component {
 
     this.state = {
       showingLetters: false,
-      showingQuiz: false,
-      letters: []
+      showingQuiz: true,
+      letters: this.lettersToDisplay()
     }
 
     this.showLetters = this.showLetters.bind(this)
   }
 
-  randomiseNumOfLetters(numOfLetters) {
-    return numOfLetters - randomBetween(0, 2)
+  adjustNumLetters(numOfLetters) {
+    const adjusted = numOfLetters - randomBetween(0, 2)
+    return adjusted > 3 ? adjusted : 3
   }
 
   showLetters(event) {
-    event.preventDefault();
     this.setState({
       letters: this.lettersToDisplay(),
+      showingQuiz: false,
       showingLetters: true
     })
 
@@ -35,9 +35,9 @@ class CanvasController extends React.Component {
 
   lettersToDisplay() {
     let letters = []
-    const randomisedNumOfLetters = this.randomiseNumOfLetters(this.props.numOfLetters)
+    const adjustedNumOfLetters = this.adjustNumLetters(this.props.numOfLetters)
 
-    for (let count = 0; count < randomisedNumOfLetters; count++) {
+    for (let count = 0; count < adjustedNumOfLetters; count++) {
       letters = [...letters, this.props.possibleLetters[randomBetween(0, this.props.possibleLetters.length)]];
     }
 
@@ -64,7 +64,19 @@ class CanvasController extends React.Component {
     } else {
       return (
         <Canvas>
-          <Button text='Show Letters!' onClick={this.showLetters}></Button>
+          <div className='message'>
+            <h2 className='heading-2'>Short term visual memory training</h2>
+            <p>
+              Between {this.props.numOfLetters - 1} and {this.props.numOfLetters} (adjust above) letters will flash for one second.
+            </p>
+            <p>
+              Form a mental image of the screen and use it to provide correct counts.
+            </p>
+            <p className='footer'>
+              Based on Dr. Lev Goldentouch's &nbsp;
+              <a href='http://www.keytostudy.com/short-term-visual-memory-training/' target='_blank'>Key to Study exercise</a>
+            </p>
+          </div>
         </Canvas>
       )
     }
