@@ -12,7 +12,12 @@ class NumOfLettersSelect extends React.Component {
 
   render() {
     return (
-      <Input value={this.props.value} options={this.state.options} handleChange={this.props.handleChange} label='Number of letters'/>
+      <Input
+        value={this.props.value}
+        options={this.state.options}
+        handleChange={this.props.handleChange}
+        label='Number of letters'
+      />
     )
   }
 }

@@ -15,7 +15,12 @@ class Input extends React.Component {
     return (
       <label className='input'>
         <div className='label'>{this.props.label}</div>
-        <input className='input-field' type='text' value={this.props.value} onChange={this.handleChange}></input>
+        <input
+          className='input-field'
+          type='text'
+          value={this.props.value}
+          onChange={this.handleChange}>
+        </input>
       </label>
     )
   }

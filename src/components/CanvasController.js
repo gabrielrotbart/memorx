@@ -11,7 +11,7 @@ class CanvasController extends React.Component {
 
     this.state = {
       showingLetters: false,
-      showingQuiz: true,
+      showingQuiz: false,
       letters: this.lettersToDisplay()
     }
 
@@ -20,7 +20,13 @@ class CanvasController extends React.Component {
 
   adjustNumLetters(numOfLetters) {
     const adjusted = numOfLetters - randomBetween(0, 2)
-    return adjusted > 3 ? adjusted : 3
+    if (adjusted < 3) {
+      return 3
+    } else if (adjusted > 15) {
+      return 15
+    } else {
+      return adjusted
+    }
   }
 
   showLetters(event) {
@@ -56,6 +62,28 @@ class CanvasController extends React.Component {
     )
   }
 
+  renderInstructions() {
+    const adjustedNumOfLetters = this.adjustNumLetters(this.props.numOfLetters)
+
+    return (
+      <Canvas>
+        <div className='message'>
+          <h2 className='heading-2'>Short term visual memory training</h2>
+          <p>
+            Between {adjustedNumOfLetters - 1} and {adjustedNumOfLetters} (adjust above) letters ({this.props.possibleLetters.join(', ')}) will flash for one second.
+          </p>
+          <p>
+            Form a mental image of the screen and use it to provide correct counts.
+          </p>
+          <p className='footer'>
+            Based on Dr. Lev Goldentouch's &nbsp;
+            <a href='http://www.keytostudy.com/short-term-visual-memory-training/' target='_blank'>Key to Study exercise</a>
+          </p>
+        </div>
+      </Canvas>
+    )
+  }
+
   renderCanvas() {
     if (this.state.showingLetters && !this.state.showingQuiz) {
       return this.renderLetters()
@@ -63,21 +91,7 @@ class CanvasController extends React.Component {
       return this.renderQuiz()
     } else {
       return (
-        <Canvas>
-          <div className='message'>
-            <h2 className='heading-2'>Short term visual memory training</h2>
-            <p>
-              Between {this.props.numOfLetters - 1} and {this.props.numOfLetters} (adjust above) letters will flash for one second.
-            </p>
-            <p>
-              Form a mental image of the screen and use it to provide correct counts.
-            </p>
-            <p className='footer'>
-              Based on Dr. Lev Goldentouch's &nbsp;
-              <a href='http://www.keytostudy.com/short-term-visual-memory-training/' target='_blank'>Key to Study exercise</a>
-            </p>
-          </div>
-        </Canvas>
+        this.renderInstructions()
       )
     }
   }

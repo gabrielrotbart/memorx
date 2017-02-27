@@ -9,7 +9,7 @@ class Quiz extends React.Component {
     super(props);
 
     this.state = {
-      hasAnswered: true,
+      hasAnswered: false,
       answers: props.possibleLetters.reduce((answers, letter) => {
         answers[letter] = 0
         return answers

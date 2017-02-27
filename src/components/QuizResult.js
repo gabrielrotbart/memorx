@@ -28,16 +28,15 @@ class QuizResult extends React.Component {
     const letters = Object.keys(letterCounts)
     const answers = this.props.answers
 
-    const precentages = letters.map((letter) => {
-      const incorrect = Math.abs(letterCounts[letter] - answers[letter])
-      return 1 - (incorrect / letterCounts[letter])
-    })
+    const incorrectAnswers = letters.reduce((sum, letter) => {
+      const incorrectCount = Math.abs(letterCounts[letter] - answers[letter])
+      const incorrect = incorrectCount > 0 ? 1 : 0
+      return sum + incorrect
+    }, 0)
 
-    const total = precentages.reduce((sum, precentage) => {
-      return sum + precentage
-    })
+    const totalPrecentage = (1 - (incorrectAnswers / letters.length)) * 100
 
-    return (total / letters.length) * 100
+    return Math.round(totalPrecentage)
   }
 
   render() {
