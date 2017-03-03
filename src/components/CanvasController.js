@@ -63,14 +63,12 @@ class CanvasController extends React.Component {
   }
 
   renderInstructions() {
-    const adjustedNumOfLetters = this.adjustNumLetters(this.props.numOfLetters)
-
     return (
       <Canvas>
         <div className='message'>
           <h2 className='heading-2'>Short term visual memory training</h2>
           <p>
-            Between {adjustedNumOfLetters - 1} and {adjustedNumOfLetters} (adjust above) letters ({this.props.possibleLetters.join(', ')}) will flash for one second.
+            Between {this.props.numOfLetters - 1} and {this.props.numOfLetters} (adjust above) letters ({this.props.possibleLetters.join(', ')}) will flash for one second.
           </p>
           <p>
             Form a mental image of the screen and use it to provide correct counts.
