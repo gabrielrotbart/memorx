@@ -24,9 +24,9 @@ class QuizResult extends React.Component {
   }
 
   calculatePrecentage() {
-    const letterCounts = this.props.letterCounts
-    const letters = Object.keys(letterCounts)
     const answers = this.props.answers
+    const letters = Object.keys(answers)
+    const letterCounts = this.props.letterCounts
 
     const incorrectAnswers = letters.reduce((sum, letter) => {
       const incorrectCount = Math.abs(letterCounts[letter] - answers[letter])
