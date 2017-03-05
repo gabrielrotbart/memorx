@@ -9,11 +9,15 @@ class CanvasController extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
+    const originalState = {
       showingLetters: false,
       showingQuiz: false,
       letters: this.lettersToDisplay()
     }
+
+    this.state = Object.assign(
+      { originalState: originalState }, originalState
+    )
 
     this.showLetters = this.showLetters.bind(this)
   }
@@ -37,6 +41,11 @@ class CanvasController extends React.Component {
     })
 
     window.setTimeout(() => { this.setState({showingQuiz: true, showingLetters: false}) }, 1000)
+  }
+
+  resetCanvas() {
+    const newState = Object.assign(this.state, this.state.originalState)
+    this.setState(newState)
   }
 
   lettersToDisplay() {
@@ -68,7 +77,7 @@ class CanvasController extends React.Component {
         <div className='message'>
           <h2 className='heading-2'>Short term visual memory training</h2>
           <p>
-            Between {this.props.numOfLetters - 1} and {this.props.numOfLetters} (adjust above) letters ({this.props.possibleLetters.join(', ')}) will flash for one second.
+            Between <strong>{this.props.numOfLetters - 1}</strong> and <strong>{this.props.numOfLetters}</strong> letters <strong>({this.props.possibleLetters.join(', ')})</strong> (adjust above) will flash for one second.
           </p>
           <p>
             Form a mental image of the screen and use it to provide correct counts.

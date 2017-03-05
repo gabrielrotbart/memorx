@@ -49,12 +49,12 @@ class Quiz extends React.Component {
 
   renderQuiz() {
     return (
-      <form className='quiz-form'>
+      <form className='quiz-form flex-column'>
         {
           this.props.possibleLetters.map((letter) => {
             return (
-              <label className='label' key={letter}>
-                <span className='quizzed-letter'>{letter}</span>
+              <label className='label flex' key={letter}>
+                <span>{letter}</span>
                 <input className='input' value={this.state.answers[letter]} name={letter} type='number' onChange={this.updateAnswers} />
               </label>
             )
@@ -67,7 +67,7 @@ class Quiz extends React.Component {
 
   render() {
     return (
-      <Canvas extraClasses={['quiz-canvas']}>
+      <Canvas extraClasses={['quiz-canvas', 'flex-column']}>
         { this.state.hasAnswered ? <QuizResult letterCounts={this.countLetters()} answers={this.state.answers} /> : this.renderQuiz() }
       </Canvas>
     )

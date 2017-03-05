@@ -1,5 +1,4 @@
 import React from 'react'
-import Canvas from './Canvas'
 
 class QuizResult extends React.Component {
 
@@ -29,7 +28,7 @@ class QuizResult extends React.Component {
     const letterCounts = this.props.letterCounts
 
     const incorrectAnswers = letters.reduce((sum, letter) => {
-      const incorrectCount = Math.abs(letterCounts[letter] - answers[letter])
+      const incorrectCount = Math.abs((letterCounts[letter] || 0) - answers[letter])
       const incorrect = incorrectCount > 0 ? 1 : 0
       return sum + incorrect
     }, 0)
@@ -43,7 +42,7 @@ class QuizResult extends React.Component {
     const results = this.results()
 
     return (
-      <div className='results'>
+      <div className='results flex-column'>
         {
           results.map((result) => {
             return (
