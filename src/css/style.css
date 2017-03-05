@@ -164,6 +164,7 @@ ul, li {
 }
 
 .quiz-form .input {
+  font-size: 1.1rem;
   padding: 0.4rem;
   border: 1px solid #8a8989;
   border-radius: 3px;
@@ -175,7 +176,7 @@ ul, li {
   width: 7.5rem;
   align-items: center;
   justify-content: space-around;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .results {
@@ -196,4 +197,12 @@ ul, li {
   margin-top: 1rem;
   font-size: 1.5rem;
   letter-spacing: 0.1rem;
+}
+
+@media only screen and (max-device-width : 667px) {
+  .input .label {
+    font-size: 0.9rem;
+    margin-bottom: 0.6rem;
+    margin-left: 0.5rem;
+  }
 }

@@ -14,7 +14,7 @@ class QuizResult extends React.Component {
     return letters.map((letter) => {
       let result = {
         letter: letter,
-        answered: this.props.answers[letter],
+        answered: this.props.answers[letter] || 0,
         displayed: this.props.letterCounts[letter] || 0,
       }
 
@@ -28,7 +28,7 @@ class QuizResult extends React.Component {
     const letterCounts = this.props.letterCounts
 
     const incorrectAnswers = letters.reduce((sum, letter) => {
-      const incorrectCount = Math.abs((letterCounts[letter] || 0) - answers[letter])
+      const incorrectCount = Math.abs((letterCounts[letter] || 0) - (answers[letter] || 0))
       const incorrect = incorrectCount > 0 ? 1 : 0
       return sum + incorrect
     }, 0)
